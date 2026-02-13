@@ -313,7 +313,7 @@ function App() {
                 <div className="scenario-depleted">Depleted at age {pessLast.yourAge}</div>
               )}
               {!pessDepleted && pessLast && (
-                <div className="scenario-ok">Funds last to {pessLast.yourAge}+</div>
+                <div className="scenario-ok">Funds last to {pessLast.yourAge}+ years old</div>
               )}
             </div>
 
@@ -329,7 +329,7 @@ function App() {
                 <div className="scenario-depleted">Depleted at age {lastRow.yourAge}</div>
               )}
               {!isDepleted && lastRow && (
-                <div className="scenario-ok">Funds last to {lastRow.yourAge}+</div>
+                <div className="scenario-ok">Funds last to {lastRow.yourAge}+ years old</div>
               )}
             </div>
 
@@ -344,7 +344,7 @@ function App() {
                 <div className="scenario-depleted">Depleted at age {optLast.yourAge}</div>
               )}
               {!optDepleted && optLast && (
-                <div className="scenario-ok">Funds last to {optLast.yourAge}+</div>
+                <div className="scenario-ok">Funds last to {optLast.yourAge}+ years old</div>
               )}
             </div>
           </div>
