@@ -163,7 +163,7 @@ export default `
   .tooltip-bubble {
     position: absolute;
     bottom: calc(100% + 8px);
-    left: 50%;
+    left: calc(50% + 4px);
     transform: translateX(-50%);
     background: var(--color-charcoal);
     color: var(--color-warm-white);
@@ -186,7 +186,7 @@ export default `
     content: '';
     position: absolute;
     top: 100%;
-    left: 50%;
+    left: calc(50% - 4px);
     transform: translateX(-50%);
     border: 5px solid transparent;
     border-top-color: var(--color-charcoal);

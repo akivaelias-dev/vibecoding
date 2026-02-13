@@ -218,7 +218,7 @@ function App() {
               label="Annual Brokerage Contribution"
               value={yourBrokerageContribution}
               onChange={setYourBrokerageContribution}
-              tooltip="Annual contribution to brokerage accounts while working (today's dollars)"
+              tooltip="Annual contribution to brokerage/investment accounts while working (today's dollars)"
             />
             <CurrencyInput
               label="Annual Retirement Contribution"
@@ -266,7 +266,7 @@ function App() {
           )}
 
           {/* Retirement Goal Card */}
-          <Card title="Retirement Goal" className="animate-fade-in-up delay-5" titleTooltip="The model does not take into consideration any inheritance or pension that you may expect; adjust the desired monthly cash to account for such cash flows">
+          <Card title="Retirement Goal" className="animate-fade-in-up delay-5" titleTooltip="The model does not take into consideration any inheritance or pension that you may expect; adjust the desired monthly cash to account for such future cash flows">
             <CurrencyInput
               label="Desired Monthly Cash when Retired"
               value={monthlyRetirementCash}
@@ -292,7 +292,7 @@ function App() {
           }>
             <PercentInput label="COLA / Inflation" value={cola} onChange={setCola} tooltip="Cost-of-Living Adjustment" />
             <PercentInput label="Investment Return" value={investmentReturn} onChange={setInvestmentReturn} />
-            <PercentInput label="Brokerage Tax Rate" value={brokerageTaxRate} onChange={setBrokerageTaxRate} tooltip="Tax rate for withdrawals from brokerage accounts" max={1} />
+            <PercentInput label="Brokerage Tax Rate" value={brokerageTaxRate} onChange={setBrokerageTaxRate} tooltip="Effective tax rate when you withdraw funds from your brokerage/investment accounts" max={1} />
             <PercentInput label="Federal Tax Rate" value={federalTaxRate} onChange={setFederalTaxRate} tooltip="Enter an appropriate tax rate based on your retirement income tax bracket" max={1} />
             <PercentInput label="State Tax Rate" value={stateTaxRate} onChange={setStateTaxRate} tooltip="The tax rate based on your retirement income tax bracket for the state in which you plan to retire in" max={1} />
           </Card>
