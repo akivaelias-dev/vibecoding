@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Tooltip } from './Tooltip.tsx'
 
 interface InputProps {
   label: string
@@ -13,7 +14,7 @@ export function CurrencyInput({ label, value, onChange, tooltip }: InputProps & 
     <div className="input-group">
       <label>
         {label}
-        {tooltip && <span className="tooltip-trigger" title={tooltip}>?</span>}
+        {tooltip && <Tooltip text={tooltip} />}
       </label>
       <div className="input-wrapper currency">
         <span className="prefix">$</span>
@@ -39,7 +40,7 @@ export function NumberInput({ label, value, onChange, min, max, tooltip }: Input
     <div className="input-group">
       <label>
         {label}
-        {tooltip && <span className="tooltip-trigger" title={tooltip}>?</span>}
+        {tooltip && <Tooltip text={tooltip} />}
       </label>
       <input
         type="number"
@@ -84,7 +85,7 @@ export function PercentInput({ label, value, onChange, tooltip, min = 0, max }: 
     <div className="input-group">
       <label>
         {label}
-        {tooltip && <span className="tooltip-trigger" title={tooltip}>?</span>}
+        {tooltip && <Tooltip text={tooltip} />}
       </label>
       <div className="input-wrapper percent">
         <input
@@ -118,7 +119,7 @@ export function Card({ title, children, className = '', titleExtra, titleTooltip
       {title && (
         <h3 className="card-title">
           {title}
-          {titleTooltip && <span className="tooltip-trigger" title={titleTooltip}>?</span>}
+          {titleTooltip && <Tooltip text={titleTooltip} />}
           {titleExtra}
         </h3>
       )}

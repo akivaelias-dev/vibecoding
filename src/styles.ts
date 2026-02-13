@@ -133,6 +133,7 @@ export default `
   }
 
   .tooltip-trigger {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -145,11 +146,44 @@ export default `
     font-weight: 600;
     cursor: help;
     transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .tooltip-trigger:hover {
     background: var(--color-sage-light);
     color: var(--color-warm-white);
+  }
+
+  .tooltip-bubble {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-charcoal);
+    color: var(--color-warm-white);
+    font-size: 0.7rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    width: max-content;
+    max-width: 220px;
+    white-space: normal;
+    text-transform: none;
+    letter-spacing: normal;
+    box-shadow: 0 4px 12px rgba(45, 42, 38, 0.2);
+    z-index: 50;
+    pointer-events: none;
+  }
+
+  .tooltip-bubble::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--color-charcoal);
   }
 
   .input-wrapper { position: relative; }
