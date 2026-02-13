@@ -546,7 +546,11 @@ export default `
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
     background: var(--color-cream-dark);
-    border-bottom: 1px solid var(--color-cream-dark);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(45, 42, 38, 0.04);
+    margin-bottom: 1.5rem;
   }
 
   .scenario-card {

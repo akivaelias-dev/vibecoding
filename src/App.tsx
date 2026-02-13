@@ -176,55 +176,6 @@ function App() {
 
 
 
-      {/* Scenario Comparison */}
-      <div className="scenarios animate-fade-in-up delay-2">
-        <div className="scenario-card pessimistic">
-          <div className="scenario-label">Pessimistic</div>
-          <div className="scenario-assumptions">
-            {formatPercent(Math.max(0, investmentReturn - 0.03))} return · {formatPercent(cola + 0.012)} inflation
-          </div>
-          <div className="scenario-nest-egg">{formatCurrency(pessAtRetirement)}</div>
-          <div className="scenario-sub">at retirement</div>
-          {pessDepleted && (
-            <div className="scenario-depleted">Depleted at age {pessLast.yourAge}</div>
-          )}
-          {!pessDepleted && pessLast && (
-            <div className="scenario-ok">Funds last to {pessLast.yourAge}+</div>
-          )}
-        </div>
-
-        <div className="scenario-card base">
-          <div className="scenario-badge">Your Plan</div>
-          <div className="scenario-label">Base Case</div>
-          <div className="scenario-assumptions">
-            {formatPercent(investmentReturn)} return · {formatPercent(cola)} inflation
-          </div>
-          <div className="scenario-nest-egg">{formatCurrency(atRetirementNestEgg)}</div>
-          <div className="scenario-sub">at retirement</div>
-          {isDepleted && (
-            <div className="scenario-depleted">Depleted at age {lastRow.yourAge}</div>
-          )}
-          {!isDepleted && lastRow && (
-            <div className="scenario-ok">Funds last to {lastRow.yourAge}+</div>
-          )}
-        </div>
-
-        <div className="scenario-card optimistic">
-          <div className="scenario-label">Optimistic</div>
-          <div className="scenario-assumptions">
-            {formatPercent(investmentReturn + 0.03)} return · {formatPercent(Math.max(0, cola - 0.008))} inflation
-          </div>
-          <div className="scenario-nest-egg">{formatCurrency(optAtRetirement)}</div>
-          <div className="scenario-sub">at retirement</div>
-          {optDepleted && (
-            <div className="scenario-depleted">Depleted at age {optLast.yourAge}</div>
-          )}
-          {!optDepleted && optLast && (
-            <div className="scenario-ok">Funds last to {optLast.yourAge}+</div>
-          )}
-        </div>
-      </div>
-
       {/* Main Content */}
       <div className="main-content">
         {/* Sidebar */}
@@ -349,6 +300,55 @@ function App() {
 
         {/* Chart + Projection Table */}
         <main>
+          {/* Scenario Comparison */}
+          <div className="scenarios animate-fade-in-up delay-2">
+            <div className="scenario-card pessimistic">
+              <div className="scenario-label">Pessimistic</div>
+              <div className="scenario-assumptions">
+                {formatPercent(Math.max(0, investmentReturn - 0.03))} return · {formatPercent(cola + 0.012)} inflation
+              </div>
+              <div className="scenario-nest-egg">{formatCurrency(pessAtRetirement)}</div>
+              <div className="scenario-sub">at retirement</div>
+              {pessDepleted && (
+                <div className="scenario-depleted">Depleted at age {pessLast.yourAge}</div>
+              )}
+              {!pessDepleted && pessLast && (
+                <div className="scenario-ok">Funds last to {pessLast.yourAge}+</div>
+              )}
+            </div>
+
+            <div className="scenario-card base">
+              <div className="scenario-badge">Your Plan</div>
+              <div className="scenario-label">Base Case</div>
+              <div className="scenario-assumptions">
+                {formatPercent(investmentReturn)} return · {formatPercent(cola)} inflation
+              </div>
+              <div className="scenario-nest-egg">{formatCurrency(atRetirementNestEgg)}</div>
+              <div className="scenario-sub">at retirement</div>
+              {isDepleted && (
+                <div className="scenario-depleted">Depleted at age {lastRow.yourAge}</div>
+              )}
+              {!isDepleted && lastRow && (
+                <div className="scenario-ok">Funds last to {lastRow.yourAge}+</div>
+              )}
+            </div>
+
+            <div className="scenario-card optimistic">
+              <div className="scenario-label">Optimistic</div>
+              <div className="scenario-assumptions">
+                {formatPercent(investmentReturn + 0.03)} return · {formatPercent(Math.max(0, cola - 0.008))} inflation
+              </div>
+              <div className="scenario-nest-egg">{formatCurrency(optAtRetirement)}</div>
+              <div className="scenario-sub">at retirement</div>
+              {optDepleted && (
+                <div className="scenario-depleted">Depleted at age {optLast.yourAge}</div>
+              )}
+              {!optDepleted && optLast && (
+                <div className="scenario-ok">Funds last to {optLast.yourAge}+</div>
+              )}
+            </div>
+          </div>
+
           <NestEggChart data={projections} retirementAge={yourRetirementAge} />
           <div className="projection-container animate-fade-in-up delay-3">
             <div className="projection-header">
