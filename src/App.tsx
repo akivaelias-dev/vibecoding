@@ -462,8 +462,7 @@ function App() {
 
       {/* Disclaimer */}
       <div className="disclaimer">
-        This tool provides general estimates only and is not financial advice.<br />
-        Consult a qualified financial advisor for personalized guidance.<br />
+        This tool provides general estimates only and is not financial advice. Consult a qualified financial advisor for personalized guidance.<br />
         <button className="disclaimer-link" onClick={() => { setShowDisclaimerPage(true); window.scrollTo(0, 0) }}>
           Disclaimer
         </button>
