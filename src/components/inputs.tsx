@@ -118,8 +118,10 @@ export function Card({ title, children, className = '', titleExtra, titleTooltip
     <div className={`card ${className}`}>
       {title && (
         <h3 className="card-title">
-          {title}
-          {titleTooltip && <Tooltip text={titleTooltip} />}
+          <span className="card-title-left">
+            {title}
+            {titleTooltip && <Tooltip text={titleTooltip} />}
+          </span>
           {titleExtra}
         </h3>
       )}

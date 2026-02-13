@@ -118,6 +118,12 @@ export default `
     justify-content: space-between;
   }
 
+  .card-title-left {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
   /* ===== Form Inputs ===== */
   .input-group { margin-bottom: 0.5rem; }
   .input-group:last-child { margin-bottom: 0; }
@@ -852,11 +858,6 @@ export default `
       margin: 0 -0.75rem;
     }
 
-    .chart-container {
-      border-radius: 0;
-      margin: 0 -0.75rem;
-    }
-
     .chart-header {
       padding: 1rem 1rem 0.5rem;
     }
@@ -919,7 +920,6 @@ export default `
     }
 
     .projection-container {
-      border-radius: 14px;
       margin: 0 -0.75rem;
       border-radius: 0;
     }
