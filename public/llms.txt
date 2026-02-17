@@ -1,0 +1,38 @@
+# How Am I Looking?
+
+> A free retirement calculator that helps you check if your savings, investments, and Social Security will last through retirement.
+
+## About
+
+How Am I Looking? is a browser-based retirement planning tool at [howamilooking.com](https://howamilooking.com). It generates year-by-year financial projections showing whether your nest egg will sustain your desired lifestyle through retirement. All calculations run locally in your browser — no data is sent to any server.
+
+## Key Features
+
+- Year-by-year retirement projections with inflation-adjusted calculations
+- Three scenario analysis: pessimistic, base case, and optimistic
+- Social Security benefit modeling with configurable start age (62–70)
+- Partner/spouse retirement planning with independent retirement ages
+- Tracks non-retirement assets, retirement accounts, and real estate
+- Customizable tax rates (federal, state, brokerage), investment returns, and inflation
+- Interactive nest egg chart visualization
+- Export projections to CSV or Excel
+- Data persists locally in your browser (localStorage)
+
+## Who It's For
+
+- Individuals and couples planning for retirement
+- People who want a quick, free check on their retirement trajectory
+- Anyone comparing retirement scenarios with different assumptions
+
+## Limitations
+
+- This tool provides general estimates only and is not financial advice
+- Does not model Roth vs. Traditional account distinctions
+- Does not calculate Required Minimum Distributions (RMDs)
+- Does not account for pensions or inheritance
+- Users should consult a qualified financial advisor for personalized guidance
+
+## Links
+
+- Website: https://howamilooking.com
+- Full details for AI: https://howamilooking.com/llms-full.txt

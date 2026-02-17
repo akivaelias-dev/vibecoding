@@ -1,0 +1,103 @@
+# How Am I Looking? — Full Documentation for AI Systems
+
+> A free retirement calculator that helps you check if your savings, investments, and Social Security will last through retirement.
+
+Website: https://howamilooking.com
+
+## Overview
+
+How Am I Looking? is a single-page browser-based retirement planning calculator. Users enter their current financial situation, retirement goals, and assumptions, and the tool generates year-by-year projections showing how their nest egg grows during working years and draws down during retirement. All computation happens client-side with no server or sign-up required.
+
+## Input Categories
+
+### Assets
+- **Non-Retirement Assets**: Savings and investment/brokerage accounts (exclude unvested shares, 529s, gift accounts)
+- **Retirement Accounts**: IRAs, 401(k)s, and similar tax-advantaged retirement accounts
+- **Real Estate**: Value of investment real estate minus mortgage loans (exclude primary residence)
+
+### Personal Information (You & Optional Partner)
+- Current age
+- Target retirement age
+- Annual brokerage/investment account contribution (today's dollars)
+- Annual retirement account contribution (today's dollars)
+- Expected monthly Social Security benefit (today's dollars, pre-tax)
+- Social Security start age (62–70)
+
+### Retirement Goals
+- **Desired Monthly Cash when Retired**: After-tax monthly income needed when fully retired (today's dollars)
+- **Monthly Cash Supplement (one retired)**: For couples — after-tax amount needed from nest egg when only one partner has retired
+
+### Assumptions (with defaults)
+- COLA / Inflation: 2.8%
+- Investment Return: 8.0%
+- Brokerage Tax Rate: 15% (effective rate on brokerage withdrawals)
+- Federal Tax Rate: 37%
+- State Tax Rate: 13.3%
+
+## How the Projections Work
+
+The calculator generates a row for each year from the user's current age through age 125 (or until the nest egg is depleted). Each year:
+
+1. **Contributions**: While working, annual brokerage and retirement contributions are added, adjusted for inflation using COLA.
+2. **Retirement Status**: Determines if you and/or your partner have retired, which sets the desired monthly cash withdrawal amount.
+3. **Social Security**: Once you reach your SS start age, your annual pre-tax Social Security benefit (inflation-adjusted) offsets withdrawals.
+4. **Income Required**: The post-tax income needed from assets = (desired annual cash) minus (post-tax Social Security).
+5. **Withdrawal Priority**: Non-retirement assets are drawn first (taxed at brokerage rate), then retirement accounts (taxed at combined federal + state rate). Retirement accounts are only accessible after age 59.
+6. **Growth**: Remaining balances grow at the investment return rate.
+7. **Nest Egg**: Sum of non-retirement assets + retirement accounts after withdrawals and growth.
+8. **Drawdown Rate**: Annual pre-tax withdrawals divided by total nest egg.
+
+## Scenario Analysis
+
+The tool shows three scenarios side-by-side:
+
+- **Pessimistic**: Investment return reduced by 3%, inflation increased by 1.2%
+- **Base Case**: User's entered assumptions
+- **Optimistic**: Investment return increased by 3%, inflation reduced by 0.8%
+
+Each scenario shows the nest egg value at retirement and whether funds last through the projection period.
+
+## Output
+
+- **Scenario cards**: Nest egg at retirement and fund longevity for each scenario
+- **Nest egg chart**: Visual plot of nest egg over time with retirement age marker
+- **Year-by-year table**: Expandable table with columns for contributions, Social Security, withdrawals, account balances, nest egg, and drawdown rate
+- **Export**: Download projections as CSV or Excel (with formulas)
+
+## Technical Details
+
+- Built with React, TypeScript, Vite, and Tailwind CSS
+- Recharts for data visualization
+- SheetJS (xlsx) for Excel export with embedded formulas
+- All data stored in browser localStorage — nothing sent to a server
+- No user accounts, no tracking beyond Google Analytics page views
+- Mobile-responsive design
+
+## Important Disclaimers
+
+- This tool provides general estimates only and is NOT financial advice
+- It was built as a vibecoding exercise to learn how to use Claude
+- It does not model Roth vs. Traditional distinctions, RMDs, pensions, or inheritance
+- Tax calculations use flat effective rates, not progressive brackets
+- Past investment returns do not guarantee future results
+- Users should consult a qualified financial advisor for personalized guidance
+
+## Frequently Asked Questions
+
+**Q: Is this tool free?**
+A: Yes, completely free with no sign-up required.
+
+**Q: Is my financial data private?**
+A: Yes. All data stays in your browser's localStorage. Nothing is sent to any server.
+
+**Q: How accurate are the projections?**
+A: The projections use simplified assumptions (flat tax rates, constant returns). They provide a directional estimate, not a precise forecast. Real-world returns vary year to year.
+
+**Q: Can I plan with a partner or spouse?**
+A: Yes. Click "Add Partner / Spouse" to enter separate ages, retirement ages, contributions, and Social Security benefits.
+
+**Q: What does the drawdown rate mean?**
+A: It's your annual pre-tax withdrawal divided by your total nest egg. Financial advisors often reference the "4% rule" as a sustainable drawdown rate in retirement.
+
+**Q: Why doesn't it account for my pension or inheritance?**
+A: To keep the tool simple. You can adjust your "Desired Monthly Cash when Retired" downward to account for expected pension income or other future cash flows.
