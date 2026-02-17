@@ -2,12 +2,64 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>How Am I Looking? - Retirement Readiness</title>
+
+    <title>How Am I Looking? | Free Retirement Calculator - Check Your Retirement Readiness</title>
+    <meta name="description" content="Free retirement calculator with year-by-year projections. See if your savings, investments, and Social Security will last through retirement. Includes partner planning, scenario analysis, and exportable results." />
+    <meta name="keywords" content="retirement calculator, retirement planning, nest egg calculator, Social Security calculator, retirement readiness, retirement savings, financial planning, retirement projection" />
+    <link rel="canonical" href="https://howamilooking.com/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://howamilooking.com/" />
+    <meta property="og:title" content="How Am I Looking? | Free Retirement Calculator" />
+    <meta property="og:description" content="Free retirement calculator with year-by-year projections. See if your savings, investments, and Social Security will last through retirement." />
+    <meta property="og:image" content="https://howamilooking.com/og-image.png" />
+    <meta property="og:site_name" content="How Am I Looking?" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://howamilooking.com/" />
+    <meta name="twitter:title" content="How Am I Looking? | Free Retirement Calculator" />
+    <meta name="twitter:description" content="Free retirement calculator with year-by-year projections. See if your savings, investments, and Social Security will last through retirement." />
+    <meta name="twitter:image" content="https://howamilooking.com/og-image.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "How Am I Looking? - Retirement Calculator",
+      "url": "https://howamilooking.com/",
+      "description": "Free retirement calculator with year-by-year projections, scenario analysis, Social Security modeling, and partner planning.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Year-by-year retirement projections",
+        "Optimistic, base, and pessimistic scenario analysis",
+        "Social Security benefit modeling",
+        "Partner/spouse retirement planning",
+        "Inflation-adjusted calculations",
+        "CSV and Excel export"
+      ]
+    }
+    </script>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JJXZQN7K5"></script>
     <script>
@@ -19,6 +71,22 @@
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="max-width:700px;margin:40px auto;padding:20px;font-family:sans-serif;">
+        <h1>How Am I Looking? - Free Retirement Calculator</h1>
+        <p>A free retirement planning tool that helps you check if your savings will last through retirement.</p>
+        <h2>Features</h2>
+        <ul>
+          <li>Year-by-year retirement projections with inflation adjustments</li>
+          <li>Optimistic, base case, and pessimistic scenario analysis</li>
+          <li>Social Security benefit modeling for you and your partner</li>
+          <li>Track non-retirement assets, retirement accounts, and real estate</li>
+          <li>Customizable tax rates, investment returns, and inflation assumptions</li>
+          <li>Export your projections to CSV or Excel</li>
+        </ul>
+        <p>Please enable JavaScript to use the retirement calculator.</p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
