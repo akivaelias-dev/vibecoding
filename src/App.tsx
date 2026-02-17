@@ -93,7 +93,7 @@ function App() {
   // ===== Derived Values =====
   const totalAssets = nonRetirementAssets + retirementAssets + realEstateAssets
 
-  const state: AppState = {
+  const state: AppState = useMemo(() => ({
     nonRetirementAssets, retirementAssets, realEstateAssets,
     yourAge, yourRetirementAge, yourBrokerageContribution, yourRetirementContribution,
     yourSocialSecurity, yourSSStartAge,
@@ -105,9 +105,7 @@ function App() {
     partnerSSStartAge: showPartner ? partnerSSStartAge : 0,
     monthlyRetirementCash, monthlyPartialRetirementCash,
     cola, investmentReturn, brokerageTaxRate, federalTaxRate, stateTaxRate,
-  }
-
-  const projections = useMemo(() => generateProjections(state), [
+  }), [
     nonRetirementAssets, retirementAssets, realEstateAssets,
     yourAge, yourRetirementAge, yourBrokerageContribution, yourRetirementContribution,
     yourSocialSecurity, yourSSStartAge,
@@ -117,28 +115,20 @@ function App() {
     cola, investmentReturn, brokerageTaxRate, federalTaxRate, stateTaxRate,
   ])
 
-  // ===== Scenario Projections =====
-  const scenarioDeps = [
-    nonRetirementAssets, retirementAssets, realEstateAssets,
-    yourAge, yourRetirementAge, yourBrokerageContribution, yourRetirementContribution,
-    yourSocialSecurity, yourSSStartAge,
-    showPartner, partnerAge, partnerRetirementAge, partnerBrokerageContribution,
-    partnerRetirementContribution, partnerSocialSecurity, partnerSSStartAge,
-    monthlyRetirementCash, monthlyPartialRetirementCash,
-    cola, investmentReturn, brokerageTaxRate, federalTaxRate, stateTaxRate,
-  ]
+  const projections = useMemo(() => generateProjections(state), [state])
 
+  // ===== Scenario Projections =====
   const pessimisticProjections = useMemo(() => generateProjections({
     ...state,
     investmentReturn: Math.max(0, investmentReturn - 0.03),
     cola: cola + 0.012,
-  }), scenarioDeps)
+  }), [state, investmentReturn, cola])
 
   const optimisticProjections = useMemo(() => generateProjections({
     ...state,
     investmentReturn: investmentReturn + 0.03,
     cola: Math.max(0, cola - 0.008),
-  }), scenarioDeps)
+  }), [state, investmentReturn, cola])
 
   // ===== Milestone Calculations =====
   const findRetirementRow = (rows: ProjectionRow[]) =>
