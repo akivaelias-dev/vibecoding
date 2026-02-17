@@ -120,14 +120,14 @@ function App() {
   // ===== Scenario Projections =====
   const pessimisticProjections = useMemo(() => generateProjections({
     ...state,
-    investmentReturn: Math.max(0, investmentReturn - 0.03),
-    cola: cola + 0.012,
+    investmentReturn: Math.max(0, investmentReturn - 0.02),
+    cola: cola + 0.02,
   }), [state, investmentReturn, cola])
 
   const optimisticProjections = useMemo(() => generateProjections({
     ...state,
-    investmentReturn: investmentReturn + 0.03,
-    cola: Math.max(0, cola - 0.008),
+    investmentReturn: investmentReturn + 0.02,
+    cola: cola <= 0.02 ? cola / 2 : cola - 0.02,
   }), [state, investmentReturn, cola])
 
   // ===== Milestone Calculations =====
