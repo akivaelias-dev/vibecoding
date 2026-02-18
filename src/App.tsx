@@ -121,13 +121,13 @@ function App() {
   const pessimisticProjections = useMemo(() => generateProjections({
     ...state,
     investmentReturn: Math.max(0, investmentReturn - 0.02),
-    cola: cola + 0.02,
+    cola: cola + 0.01,
   }), [state, investmentReturn, cola])
 
   const optimisticProjections = useMemo(() => generateProjections({
     ...state,
     investmentReturn: investmentReturn + 0.02,
-    cola: cola <= 0.02 ? cola / 2 : cola - 0.02,
+    cola: cola >= 0.02 ? cola - 0.01 : cola / 2,
   }), [state, investmentReturn, cola])
 
   // ===== Milestone Calculations =====
@@ -295,7 +295,7 @@ function App() {
             <div className="scenario-card pessimistic">
               <div className="scenario-label">Pessimistic</div>
               <div className="scenario-assumptions">
-                {formatPercent(Math.max(0, investmentReturn - 0.03))} return · {formatPercent(cola + 0.012)} inflation
+                {formatPercent(Math.max(0, investmentReturn - 0.02))} return · {formatPercent(cola + 0.01)} inflation
               </div>
               <div className="scenario-nest-egg">{formatCurrency(pessAtRetirement)}</div>
               <div className="scenario-sub">at retirement</div>
@@ -326,7 +326,7 @@ function App() {
             <div className="scenario-card optimistic">
               <div className="scenario-label">Optimistic</div>
               <div className="scenario-assumptions">
-                {formatPercent(investmentReturn + 0.03)} return · {formatPercent(Math.max(0, cola - 0.008))} inflation
+                {formatPercent(investmentReturn + 0.02)} return · {formatPercent(cola >= 0.02 ? cola - 0.01 : cola / 2)} inflation
               </div>
               <div className="scenario-nest-egg">{formatCurrency(optAtRetirement)}</div>
               <div className="scenario-sub">at retirement</div>
