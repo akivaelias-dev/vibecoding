@@ -59,7 +59,6 @@ function calculatePostTaxIncomeRequired(
   desiredMonthlyCash: number,
   inflationMultiplier: number,
   preTaxSocialSecurity: number,
-  combinedTaxRate: number,
   federalTaxRate: number
 ): number {
   const annualCashNeeded = 12 * desiredMonthlyCash * inflationMultiplier
@@ -174,7 +173,7 @@ export function generateProjections(state: AppState): ProjectionRow[] {
 
     // Step 4: Calculate income requirements and availability
     const postTaxIncomeRequired = calculatePostTaxIncomeRequired(
-      desiredMonthlyCash, inflationMultiplier, preTaxSocialSecurity, combinedTaxRate, federalTaxRate
+      desiredMonthlyCash, inflationMultiplier, preTaxSocialSecurity, federalTaxRate
     )
     const cashAvailableNonRet = prevNonRetirement * (1 - brokerageTaxRate)
     const canAccessRetirement = currentYourAge > 59 || (hasPartner && currentPartnerAge > 59)
