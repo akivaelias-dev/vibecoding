@@ -11,7 +11,7 @@ export const defaults = {
   partnerSocialSecurity: 0, partnerSSStartAge: 70,
   monthlyRetirementCash: 0, monthlyPartialRetirementCash: 0,
   cola: 0.028, investmentReturn: 0.08,
-  brokerageTaxRate: 0.15, federalTaxRate: 0.37, stateTaxRate: 0.133,
+  brokerageTaxRate: 0.25, federalTaxRate: 0.37, stateTaxRate: 0.133,
 }
 
 export function loadSaved(): typeof defaults {

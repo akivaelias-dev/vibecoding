@@ -276,13 +276,13 @@ function App() {
           {/* Assumptions Card */}
           <Card title="Assumptions" className="animate-fade-in-up delay-5" titleExtra={
             <button className="reset-link" onClick={() => {
-              setCola(0.028); setInvestmentReturn(0.08); setBrokerageTaxRate(0.15)
+              setCola(0.028); setInvestmentReturn(0.08); setBrokerageTaxRate(0.25)
               setFederalTaxRate(0.37); setStateTaxRate(0.133)
             }}>Reset</button>
           }>
             <PercentInput label="COLA / Inflation" value={cola} onChange={setCola} tooltip="Cost-of-Living Adjustment" />
             <PercentInput label="Investment Return" value={investmentReturn} onChange={setInvestmentReturn} />
-            <PercentInput label="Brokerage Tax Rate" value={brokerageTaxRate} onChange={setBrokerageTaxRate} tooltip="Effective tax rate when you withdraw funds from your brokerage/investment accounts" max={1} />
+            <PercentInput label="Capital Gains Tax Rate" value={brokerageTaxRate} onChange={setBrokerageTaxRate} tooltip="Effective tax rate when you withdraw funds from your brokerage/investment accounts" max={1} />
             <PercentInput label="Federal Tax Rate" value={federalTaxRate} onChange={setFederalTaxRate} tooltip="Enter an appropriate tax rate based on your retirement income tax bracket" max={1} />
             <PercentInput label="State Tax Rate" value={stateTaxRate} onChange={setStateTaxRate} tooltip="The tax rate based on your retirement income tax bracket for the state in which you plan to retire in" max={1} />
           </Card>
@@ -464,6 +464,9 @@ function App() {
           <div className="modal" onClick={(e) => e.stopPropagation()}>
             <p className="modal-text">
               This tool provides general estimates only and is not financial advice. It was built as a vibecoding exercise to learn how to use Claude. Consult a qualified financial advisor for personalized guidance.
+            </p>
+            <p className="modal-text">
+              If you choose to use the app, know that all user data is local to the device and not transmitted.
             </p>
             <button className="modal-btn" onClick={acknowledgeDisclaimer}>
               I Understand

@@ -53,15 +53,17 @@ function calculateSocialSecurity(
 /**
  * Calculate post-tax income needed from assets
  * Formula: (desired annual cash) - (post-tax Social Security)
+ * Note: Social Security is only taxed at the federal rate, not state.
  */
 function calculatePostTaxIncomeRequired(
   desiredMonthlyCash: number,
   inflationMultiplier: number,
   preTaxSocialSecurity: number,
-  combinedTaxRate: number
+  combinedTaxRate: number,
+  federalTaxRate: number
 ): number {
   const annualCashNeeded = 12 * desiredMonthlyCash * inflationMultiplier
-  const postTaxSocialSecurity = preTaxSocialSecurity * (1 - combinedTaxRate)
+  const postTaxSocialSecurity = preTaxSocialSecurity * (1 - federalTaxRate)
   return annualCashNeeded - postTaxSocialSecurity
 }
 
@@ -172,7 +174,7 @@ export function generateProjections(state: AppState): ProjectionRow[] {
 
     // Step 4: Calculate income requirements and availability
     const postTaxIncomeRequired = calculatePostTaxIncomeRequired(
-      desiredMonthlyCash, inflationMultiplier, preTaxSocialSecurity, combinedTaxRate
+      desiredMonthlyCash, inflationMultiplier, preTaxSocialSecurity, combinedTaxRate, federalTaxRate
     )
     const cashAvailableNonRet = prevNonRetirement * (1 - brokerageTaxRate)
     const canAccessRetirement = currentYourAge > 59 || (hasPartner && currentPartnerAge > 59)

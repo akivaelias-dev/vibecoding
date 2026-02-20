@@ -92,7 +92,7 @@ export async function exportExcel(state: AppState, rowCount: number) {
     ['ASSUMPTIONS', ''],
     ['COLA / Inflation', state.cola],               // B29
     ['Investment Return', state.investmentReturn],   // B30
-    ['Brokerage Tax Rate', state.brokerageTaxRate],  // B31
+    ['Capital Gains Tax Rate', state.brokerageTaxRate],  // B31
     ['Federal Tax Rate', state.federalTaxRate],      // B32
     ['State Tax Rate', state.stateTaxRate],          // B33
   ]
