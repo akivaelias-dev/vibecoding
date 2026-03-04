@@ -1026,6 +1026,32 @@ export default `
       min-height: 44px;
     }
 
+    /* Larger tap targets for small interactive elements */
+    .tooltip-trigger {
+      width: 20px;
+      height: 20px;
+      font-size: 0.65rem;
+    }
+
+    .remove-partner-btn,
+    .reset-link {
+      min-height: 36px;
+      min-width: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.4rem 0.6rem;
+    }
+
+    /* Reduce modal overlay padding so modal has more room */
+    .modal-overlay {
+      padding: 0.75rem;
+    }
+
+    .modal {
+      padding: 1.75rem 1.25rem 1.25rem;
+    }
+
     .disclaimer {
       padding: 1.5rem 1rem;
     }

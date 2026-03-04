@@ -22,7 +22,6 @@ function App() {
 
   // ===== Assets State =====
   const [nonRetirementAssets, setNonRetirementAssets] = useState(saved.nonRetirementAssets)
-  const [retirementAssets, setRetirementAssets] = useState(saved.retirementAssets)
   const [realEstateAssets, setRealEstateAssets] = useState(saved.realEstateAssets)
 
   // ===== Your Info State =====
@@ -30,6 +29,7 @@ function App() {
   const [yourRetirementAge, setYourRetirementAge] = useState(saved.yourRetirementAge)
   const [yourBrokerageContribution, setYourBrokerageContribution] = useState(saved.yourBrokerageContribution)
   const [yourRetirementContribution, setYourRetirementContribution] = useState(saved.yourRetirementContribution)
+  const [yourRetirementAssets, setYourRetirementAssets] = useState(saved.yourRetirementAssets)
   const [yourSocialSecurity, setYourSocialSecurity] = useState(saved.yourSocialSecurity)
   const [yourSSStartAge, setYourSSStartAge] = useState(saved.yourSSStartAge)
 
@@ -39,6 +39,7 @@ function App() {
   const [partnerRetirementAge, setPartnerRetirementAge] = useState(saved.partnerRetirementAge)
   const [partnerBrokerageContribution, setPartnerBrokerageContribution] = useState(saved.partnerBrokerageContribution)
   const [partnerRetirementContribution, setPartnerRetirementContribution] = useState(saved.partnerRetirementContribution)
+  const [partnerRetirementAssets, setPartnerRetirementAssets] = useState(saved.partnerRetirementAssets)
   const [partnerSocialSecurity, setPartnerSocialSecurity] = useState(saved.partnerSocialSecurity)
   const [partnerSSStartAge, setPartnerSSStartAge] = useState(saved.partnerSSStartAge)
 
@@ -56,7 +57,7 @@ function App() {
   // ===== Persist to localStorage =====
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      nonRetirementAssets, retirementAssets, realEstateAssets,
+      nonRetirementAssets, yourRetirementAssets, partnerRetirementAssets, realEstateAssets,
       yourAge, yourRetirementAge, yourBrokerageContribution, yourRetirementContribution,
       yourSocialSecurity, yourSSStartAge,
       showPartner, partnerAge, partnerRetirementAge, partnerBrokerageContribution,
@@ -65,7 +66,7 @@ function App() {
       cola, investmentReturn, brokerageTaxRate, federalTaxRate, stateTaxRate,
     }))
   }, [
-    nonRetirementAssets, retirementAssets, realEstateAssets,
+    nonRetirementAssets, yourRetirementAssets, partnerRetirementAssets, realEstateAssets,
     yourAge, yourRetirementAge, yourBrokerageContribution, yourRetirementContribution,
     yourSocialSecurity, yourSSStartAge,
     showPartner, partnerAge, partnerRetirementAge, partnerBrokerageContribution,
@@ -91,10 +92,9 @@ function App() {
   }
 
   // ===== Derived Values =====
-  const totalAssets = nonRetirementAssets + retirementAssets + realEstateAssets
-
   const state: AppState = useMemo(() => ({
-    nonRetirementAssets, retirementAssets, realEstateAssets,
+    nonRetirementAssets, yourRetirementAssets, realEstateAssets,
+    partnerRetirementAssets: showPartner ? partnerRetirementAssets : 0,
     yourAge, yourRetirementAge, yourBrokerageContribution, yourRetirementContribution,
     yourSocialSecurity, yourSSStartAge,
     partnerAge: showPartner ? partnerAge : 0,
@@ -106,7 +106,7 @@ function App() {
     monthlyRetirementCash, monthlyPartialRetirementCash,
     cola, investmentReturn, brokerageTaxRate, federalTaxRate, stateTaxRate,
   }), [
-    nonRetirementAssets, retirementAssets, realEstateAssets,
+    nonRetirementAssets, yourRetirementAssets, partnerRetirementAssets, realEstateAssets,
     yourAge, yourRetirementAge, yourBrokerageContribution, yourRetirementContribution,
     yourSocialSecurity, yourSSStartAge,
     showPartner, partnerAge, partnerRetirementAge, partnerBrokerageContribution,
@@ -183,21 +183,11 @@ function App() {
               tooltip="Savings/investment accounts; exclude unvested shares, 529s, gift accounts"
             />
             <CurrencyInput
-              label="Retirement Accounts"
-              value={retirementAssets}
-              onChange={setRetirementAssets}
-              tooltip="IRAs, 401(k)s, etc."
-            />
-            <CurrencyInput
               label="Real Estate"
               value={realEstateAssets}
               onChange={setRealEstateAssets}
               tooltip="Exclude the home you live in; include value of other real estate assets minus the mortgage loans"
             />
-            <div className="total-display">
-              <span className="total-label">Total Assets</span>
-              <span className="total-value">{formatCurrencyFull(totalAssets)}</span>
-            </div>
           </Card>
 
           {/* You Card */}
@@ -215,6 +205,12 @@ function App() {
               value={yourRetirementContribution}
               onChange={setYourRetirementContribution}
               tooltip="Annual contribution to retirement accounts while working (today's dollars)"
+            />
+            <CurrencyInput
+              label="Retirement Accounts"
+              value={yourRetirementAssets}
+              onChange={setYourRetirementAssets}
+              tooltip="Your IRAs, 401(k)s, etc."
             />
             <CurrencyInput
               label="Monthly Social Security Benefit"
@@ -246,6 +242,12 @@ function App() {
               <NumberInput label="Retirement Age" value={partnerRetirementAge} onChange={setPartnerRetirementAge} min={partnerAge + 1} max={100} />
               <CurrencyInput label="Annual Brokerage Contribution" value={partnerBrokerageContribution} onChange={setPartnerBrokerageContribution} />
               <CurrencyInput label="Annual Retirement Contribution" value={partnerRetirementContribution} onChange={setPartnerRetirementContribution} />
+              <CurrencyInput
+                label="Retirement Accounts"
+                value={partnerRetirementAssets}
+                onChange={setPartnerRetirementAssets}
+                tooltip="Partner's IRAs, 401(k)s, etc."
+              />
               <CurrencyInput label="Monthly Social Security Benefit" value={partnerSocialSecurity} onChange={setPartnerSocialSecurity} />
               <NumberInput label="Collect Social Security Benefit from Age" value={partnerSSStartAge} onChange={setPartnerSSStartAge} min={62} max={70} />
             </Card>
@@ -365,9 +367,12 @@ function App() {
                     {showAllColumns && <th>Post-tax Annual Retirement Income Required</th>}
                     {showAllColumns && <th>Cash Available from Non-retirement Assets</th>}
                     {showAllColumns && <th>Cash Available from Retirement Accounts</th>}
+                    {showAllColumns && <th>Total Post-tax RMD</th>}
+                    {showAllColumns && <th>Surplus RMD to Non-Ret Assets</th>}
                     {showAllColumns && <th>Amount Deducted from Non-retirement Assets</th>}
-                    {showAllColumns && <th>Amount Deducted from Retirement Accounts</th>}
-                    <th className="col-currency">Pre-tax Retirement Income</th>
+                    {showAllColumns && <th>Remaining Amount to be Funded</th>}
+                    {showAllColumns && <th>Additional Amount Deducted from Retirement Accounts</th>}
+                    <th className="col-currency">Pre-tax Retirement Income ex-Social Security</th>
                     <th className="col-currency">Non-retirement Assets</th>
                     <th className="col-currency">Retirement Accounts</th>
                     <th className="col-currency">Nest Egg</th>
@@ -404,7 +409,10 @@ function App() {
                         {showAllColumns && <td>{formatCurrency(row.postTaxIncomeRequired)}</td>}
                         {showAllColumns && <td>{formatCurrency(row.cashAvailableNonRet)}</td>}
                         {showAllColumns && <td>{formatCurrency(row.cashAvailableRet)}</td>}
+                        {showAllColumns && <td>{formatCurrency(row.totalPostTaxRMD)}</td>}
+                        {showAllColumns && <td>{formatCurrency(row.surplusRMD)}</td>}
                         {showAllColumns && <td>{formatCurrency(row.amountDeductedNonRet)}</td>}
+                        {showAllColumns && <td>{formatCurrency(row.remainingAmountToFund)}</td>}
                         {showAllColumns && <td>{formatCurrency(row.amountDeductedRet)}</td>}
                         <td>{formatCurrency(row.preTaxRetirementIncome)}</td>
                         <td>{formatCurrency(row.nonRetirementAssets)}</td>
@@ -413,7 +421,7 @@ function App() {
                           {formatCurrency(row.nestEgg)}
                         </td>
                         <td className="highlight">
-                          {row.drawdownRate > 0 ? formatPercent(row.drawdownRate) : '—'}
+                          {row.drawdownRate > 0 ? (row.drawdownRate * 100).toFixed(1) + '%' : '—'}
                         </td>
                       </tr>
                     )
@@ -441,7 +449,7 @@ function App() {
                 <button className="export-csv-btn" onClick={() => exportCsv(projections, showPartner)}>
                   Download .csv
                 </button>
-                <button className="export-csv-btn" onClick={() => exportExcel(state, projections.length)}>
+                <button className="export-csv-btn" onClick={() => exportExcel(state)}>
                   Download Excel
                 </button>
               </div>
