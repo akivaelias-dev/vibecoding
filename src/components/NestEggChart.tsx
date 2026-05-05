@@ -98,7 +98,7 @@ export function NestEggChart({ data, retirementAge }: { data: ProjectionRow[]; r
               <text
                 x={pad.left - 8} y={yScale(tick) + 4}
                 textAnchor="end" fill="#9C9690"
-                fontSize="10" fontFamily="DM Sans, system-ui, sans-serif"
+                fontSize="10" fontFamily="Jost, system-ui, sans-serif"
               >
                 {tick >= 1_000_000 ? `$${(tick / 1_000_000).toFixed(1)}M`
                   : tick >= 1_000 ? `$${(tick / 1_000).toFixed(0)}K`
@@ -116,7 +116,7 @@ export function NestEggChart({ data, retirementAge }: { data: ProjectionRow[]; r
                   x={barX(idx) + barWidth / 2}
                   y={height - pad.bottom + 16}
                   textAnchor="middle" fill="#9C9690"
-                  fontSize="10" fontFamily="DM Sans, system-ui, sans-serif"
+                  fontSize="10" fontFamily="Jost, system-ui, sans-serif"
                 >
                   {row.yourAge}
                 </text>
@@ -124,7 +124,7 @@ export function NestEggChart({ data, retirementAge }: { data: ProjectionRow[]; r
                   x={barX(idx) + barWidth / 2}
                   y={height - pad.bottom + 28}
                   textAnchor="middle" fill="#BCB7B0"
-                  fontSize="8" fontFamily="DM Sans, system-ui, sans-serif"
+                  fontSize="8" fontFamily="Jost, system-ui, sans-serif"
                 >
                   {row.calendarYear}
                 </text>
@@ -143,7 +143,7 @@ export function NestEggChart({ data, retirementAge }: { data: ProjectionRow[]; r
               <text
                 x={barX(retirementIdx)} y={pad.top - 6}
                 textAnchor="middle" fill="#5A7A64"
-                fontSize="9" fontFamily="DM Sans, system-ui, sans-serif"
+                fontSize="9" fontFamily="Jost, system-ui, sans-serif"
                 fontWeight="600"
               >
                 Retire
