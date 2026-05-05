@@ -54,6 +54,7 @@ function App() {
               min={0} max={100}
             />
             <NumberInput label="Retirement Age" value={app.yourRetirementAge} onChange={app.setYourRetirementAge} min={app.yourAge + 1} max={100} />
+            <CurrencyInput label="Retirement Accounts" value={app.yourRetirementAssets} onChange={app.setYourRetirementAssets} tooltip="Your IRAs, 401(k)s, etc." />
             <CurrencyInput
               label="Annual Brokerage Contribution"
               value={app.yourBrokerageContribution}
@@ -66,7 +67,6 @@ function App() {
               onChange={app.setYourRetirementContribution}
               tooltip="Annual contribution to retirement accounts while working (today's dollars)"
             />
-            <CurrencyInput label="Retirement Accounts" value={app.yourRetirementAssets} onChange={app.setYourRetirementAssets} tooltip="Your IRAs, 401(k)s, etc." />
             <CurrencyInput
               label="Monthly Social Security Benefit"
               value={app.yourSocialSecurity}
@@ -93,9 +93,9 @@ function App() {
                 min={0} max={100}
               />
               <NumberInput label="Retirement Age" value={app.partnerRetirementAge} onChange={app.setPartnerRetirementAge} min={app.partnerAge + 1} max={100} />
+              <CurrencyInput label="Retirement Accounts" value={app.partnerRetirementAssets} onChange={app.setPartnerRetirementAssets} tooltip="Partner's IRAs, 401(k)s, etc." />
               <CurrencyInput label="Annual Brokerage Contribution" value={app.partnerBrokerageContribution} onChange={app.setPartnerBrokerageContribution} />
               <CurrencyInput label="Annual Retirement Contribution" value={app.partnerRetirementContribution} onChange={app.setPartnerRetirementContribution} />
-              <CurrencyInput label="Retirement Accounts" value={app.partnerRetirementAssets} onChange={app.setPartnerRetirementAssets} tooltip="Partner's IRAs, 401(k)s, etc." />
               <CurrencyInput label="Monthly Social Security Benefit" value={app.partnerSocialSecurity} onChange={app.setPartnerSocialSecurity} />
               <NumberInput label="Collect Social Security Benefit from Age" value={app.partnerSSStartAge} onChange={app.setPartnerSSStartAge} min={62} max={70} />
             </Card>
